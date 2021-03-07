@@ -37,4 +37,11 @@ create table reimbursements (
 	type_id integer not null references reimb_type(type_id)
 );
 
+alter table reimbursements alter column status_id set default 1;
+alter table reimbursements alter column resolved drop not null;
+alter table reimbursements rename column author to author_id;
+alter table reimbursements rename column resolver to resolver_id;
+alter table reimbursements alter column submitted set default now();
+
+
 show timezone;

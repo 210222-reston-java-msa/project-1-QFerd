@@ -32,3 +32,47 @@ org.postgresql.util.PSQLException: ERROR: relation "employee" does not exist
 	at com.revature.services.UserService.main(UserService.java:56)
 2021-03-05 14:36:44 INFO  ConnectionUtil:42 - Connection successful
 2021-03-05 14:36:44 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:16:04 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:16:04 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:16:04 WARN  ExpenseDAOImpl:106 - Unable to retrieve all expenses
+org.postgresql.util.PSQLException: The column name authorId was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2607)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2498)
+	at com.revature.repositories.ExpenseDAOImpl.findAll(ExpenseDAOImpl.java:88)
+	at com.revature.services.ExpenseService.findAll(ExpenseService.java:25)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:29)
+2021-03-07 10:16:40 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:16:40 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:16:40 WARN  ExpenseDAOImpl:106 - Unable to retrieve all expenses
+org.postgresql.util.PSQLException: The column name resolver_email was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2607)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2498)
+	at com.revature.repositories.ExpenseDAOImpl.findAll(ExpenseDAOImpl.java:92)
+	at com.revature.services.ExpenseService.findAll(ExpenseService.java:25)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:29)
+2021-03-07 10:17:12 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:17:12 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:17:12 WARN  ExpenseDAOImpl:106 - Unable to retrieve all expenses
+org.postgresql.util.PSQLException: The column name status_id was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2607)
+	at org.postgresql.jdbc.PgResultSet.getInt(PgResultSet.java:2498)
+	at com.revature.repositories.ExpenseDAOImpl.findAll(ExpenseDAOImpl.java:95)
+	at com.revature.services.ExpenseService.findAll(ExpenseService.java:25)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:29)
+2021-03-07 10:19:36 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:19:36 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:19:37 WARN  ExpenseDAOImpl:106 - Unable to retrieve all expenses
+org.postgresql.util.PSQLException: The column name reimb_status was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2607)
+	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2480)
+	at com.revature.repositories.ExpenseDAOImpl.findAll(ExpenseDAOImpl.java:96)
+	at com.revature.services.ExpenseService.findAll(ExpenseService.java:25)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:29)
+2021-03-07 10:20:04 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:20:04 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:20:20 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:20:20 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:20:48 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:20:48 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 10:22:48 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 10:22:48 INFO  ConnectionUtil:52 - Connected to db

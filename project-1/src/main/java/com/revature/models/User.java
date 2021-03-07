@@ -2,7 +2,7 @@ package com.revature.models;
 
 public class User {
 	
-	private int id;
+	private int userId;
 	private String username;
 	private String password;
 	private String firstName;
@@ -14,10 +14,10 @@ public class User {
 		
 	}
 
-	public User(int id, String username, String password, String firstName, String lastName, String email,
+	public User(int userId, String username, String password, String firstName, String lastName, String email,
 			int roleId) {
 		super();
-		this.id = id;
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -37,13 +37,36 @@ public class User {
 		this.email = email;
 		this.roleId = roleId;
 	}
+	
+	
+	
+	public User(int userId, String firstName, String lastName, String email) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	
+	
 
-	public int getId() {
-		return id;
+	public User(int userId, String firstName, String lastName) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public User(String username) {
+		this.username = username;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -100,7 +123,7 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
+		result = prime * result + userId;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + roleId;
@@ -127,7 +150,7 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id != other.id)
+		if (userId != other.userId)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -151,7 +174,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", roleId=" + roleId + "]";
 	}
 	

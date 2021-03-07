@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.models.ExpenseTemplate;
+import com.revature.models.Expense;
 import com.revature.models.LoginTemplate;
 import com.revature.models.User;
 import com.revature.services.UserService;
@@ -111,13 +111,12 @@ public class RequestHelper {
 		
 		String body = s.toString();
 		
-		ExpenseTemplate expenseTemp = om.readValue(body, ExpenseTemplate.class);
+		Expense expenseTemp = om.readValue(body, Expense.class);
 		
 		HttpSession session = req.getSession(false);
 		String username = (String) session.getAttribute("username");
-		System.out.println(username);
 		
-		ExpenseTemplate expense = new ExpenseTemplate(expenseTemp.getAmount(), expenseTemp.getDescription(), username, 1, expenseTemp.getType());
+		Expense expense = new Expense(expenseTemp.getAmount(), expenseTemp.getDescription(), username, 1, expenseTemp.getType());
 		log.info(expense);
 		
 		// getParameter method not working
@@ -125,10 +124,10 @@ public class RequestHelper {
 //		String username = (String) session.getAttribute("username");
 
 //		String type = req.getParameter("type");
-//		int amount = Integer.parseInt(req.getParameter("amount"));
+//		double amount = Double.parseDouble(req.getParameter("amount"));
 //		String description = req.getParameter("description");
 //	
-//		ExpenseTemplate expense = new ExpenseTemplate(0, description, "t", 1, "Travel");
+//		ExpenseTemplate expense = new ExpenseTemplate(amount, description, "t", 1, "Travel");
 //		log.info(expense);
 //
 //		System.out.println(expense);
