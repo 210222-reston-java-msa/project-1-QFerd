@@ -3,6 +3,9 @@ package com.revature.util;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +24,7 @@ public class RequestHelper {
 	private static Logger log = Logger.getLogger(RequestHelper.class);
 	private static ObjectMapper om = new ObjectMapper();
 	
+
 	public static void processLogin(HttpServletRequest req, HttpServletResponse res) throws IOException { 
 		
 		// We want to turn whatever we receive as the request into a string to process
@@ -94,6 +98,7 @@ public class RequestHelper {
 	}
 	
 	public static void newExpense(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		// BufferedReader method:
 		
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
@@ -106,9 +111,35 @@ public class RequestHelper {
 		
 		String body = s.toString();
 		
-		ExpenseTemplate expense = om.readValue(body, ExpenseTemplate.class);
+		ExpenseTemplate expenseTemp = om.readValue(body, ExpenseTemplate.class);
 		
+		HttpSession session = req.getSession(false);
+		String username = (String) session.getAttribute("username");
+		System.out.println(username);
+		
+		ExpenseTemplate expense = new ExpenseTemplate(expenseTemp.getAmount(), expenseTemp.getDescription(), username, 1, expenseTemp.getType());
 		log.info(expense);
+		
+		// getParameter method not working
+//		HttpSession session = req.getSession(false);
+//		String username = (String) session.getAttribute("username");
+
+//		String type = req.getParameter("type");
+//		int amount = Integer.parseInt(req.getParameter("amount"));
+//		String description = req.getParameter("description");
+//	
+//		ExpenseTemplate expense = new ExpenseTemplate(0, description, "t", 1, "Travel");
+//		log.info(expense);
+//
+//		System.out.println(expense);
+//		PrintWriter pw = res.getWriter();
+//		res.setContentType("application/json");
+//		
+//		// this is converting our Java Object (with property firstName!) 
+//		// to JSON format....that means we can grab the firstName property
+//		// after we parse it. (We parse it in JavaScript)
+//		pw.println(om.writeValueAsString(expense));
+		
 	}
 	
 }

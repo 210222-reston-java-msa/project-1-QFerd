@@ -37,4 +37,7 @@ create table reimbursements (
 	type_id integer not null references reimb_type(type_id)
 );
 
+alter table reimbursements alter column status_id set default 1;
+alter table reimbursements alter column resolved drop not null;
+
 show timezone;

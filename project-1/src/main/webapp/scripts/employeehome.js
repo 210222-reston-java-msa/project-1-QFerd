@@ -1,5 +1,5 @@
-    document.getElementsByClassName('logout-btn').addEventListener('click', logout);
-    document.getElementsByClassName('new-expense-btn').addEventListener('click', newExpense);
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
 	
     // capture the welcome element and modofy it so that it says welcome + username
 	let welcome = document.getElementById('welcome');
