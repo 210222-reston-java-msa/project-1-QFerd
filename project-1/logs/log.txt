@@ -76,3 +76,5 @@ org.postgresql.util.PSQLException: The column name reimb_status was not found in
 2021-03-07 10:20:48 INFO  ConnectionUtil:52 - Connected to db
 2021-03-07 10:22:48 INFO  ConnectionUtil:42 - Connection successful
 2021-03-07 10:22:48 INFO  ConnectionUtil:52 - Connected to db
+2021-03-07 14:41:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-07 14:41:33 INFO  ConnectionUtil:52 - Connected to db

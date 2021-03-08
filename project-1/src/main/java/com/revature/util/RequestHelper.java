@@ -1,11 +1,13 @@
 package com.revature.util;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Expense;
 import com.revature.models.LoginTemplate;
 import com.revature.models.User;
+import com.revature.services.ExpenseService;
 import com.revature.services.UserService;
+
 
 public class RequestHelper {
 	
@@ -140,5 +144,15 @@ public class RequestHelper {
 //		pw.println(om.writeValueAsString(expense));
 		
 	}
+	
+	public static void retrieveExpenseRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		List<Expense> expenseList = ExpenseService.findAll();
+		
+		PrintWriter pw = res.getWriter();
+		res.setContentType("application/json");
+		
+		pw.println(om.writeValueAsString(expenseList));
+	}
+	
 	
 }
