@@ -27,6 +27,19 @@ update reimbursements
 insert into reimbursements (amount, description, author_id, type_id)
 	values (100, 'Dinner', 4, 1);
 
+insert into reimbursements (amount, description, author_id, type_id)
+	values (50, 'Lunch', 4, 1);
+
+update reimbursements 
+	set resolved = , resolver_id = 
+	where reimb_id = 
+	
+update reimbursements 
+	set description = 'Lunch' 
+	where reimb_id = 2;
+	
+	
+
 delete from users where user_id in(1,2);
 
 select reimb_id, amount, submitted, resolved, description, 
@@ -34,7 +47,7 @@ author_id, authors.first_name as author_first_name, authors.last_name as author_
 resolver_id, resolvers.first_name as resolver_first_name, resolvers.last_name as resolver_last_name, 
 rs.status_id, rs.status_name, rt.type_id, rt.type_name 
 from reimbursements
-	inner join users authors on reimbursements.author_id = authors.user_id
-	inner join users resolvers on reimbursements.resolver_id = resolvers.user_id 
-	inner join reimb_type rt on reimbursements.type_id = rt.type_id 
-	inner join reimb_status rs on reimbursements.status_id = rs.status_id;
+	left join users authors on reimbursements.author_id = authors.user_id
+	left join users resolvers on reimbursements.resolver_id = resolvers.user_id 
+	left join reimb_type rt on reimbursements.type_id = rt.type_id 
+	left join reimb_status rs on reimbursements.status_id = rs.status_id;

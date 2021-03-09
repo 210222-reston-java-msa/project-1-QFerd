@@ -10,4 +10,5 @@ public interface ExpenseDAO {
 	public boolean update(Expense e);
 	
 	public List<Expense> findAll(); 
+	
 }

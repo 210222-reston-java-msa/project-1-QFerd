@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -154,5 +155,41 @@ public class RequestHelper {
 		pw.println(om.writeValueAsString(expenseList));
 	}
 	
+	public static void viewRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
+
+		BufferedReader reader = req.getReader();
+		StringBuilder s = new StringBuilder();
+		
+		String line = reader.readLine();
+		while (line != null) {
+			s.append(line);
+			line = reader.readLine();
+		}
+		
+		String body = s.toString();
+		
+		PrintWriter pw = res.getWriter();
+		res.setContentType("application.json");
+		pw.println(s);
+	}
 	
+	public static void manageRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
+	
+		BufferedReader reader = req.getReader();
+		StringBuilder s = new StringBuilder();
+		
+		String line = reader.readLine();
+		while (line != null) {
+			s.append(line);
+			line = reader.readLine();
+		}
+		
+		String body = s.toString();
+		
+		Expense expense = om.readValue(body, Expense.class);
+		
+		//continue later:
+	
+	}
+
 }

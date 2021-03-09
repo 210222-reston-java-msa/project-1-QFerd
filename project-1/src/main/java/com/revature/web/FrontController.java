@@ -39,6 +39,13 @@ public class FrontController extends HttpServlet {
 		case "expenseRequests":
 			RequestHelper.retrieveExpenseRequests(request, response);
 			break;
+		case "viewRequest":
+			RequestHelper.viewRequest(request, response);
+			break;
+		case "manageRequest":
+			RequestHelper.manageRequest(request, response);
+			break;
+		
 //		case "employees":
 //			RequestHelper.processEmployees(request, response);
 //			break;

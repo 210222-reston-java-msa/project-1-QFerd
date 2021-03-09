@@ -78,3 +78,127 @@ org.postgresql.util.PSQLException: The column name reimb_status was not found in
 2021-03-07 10:22:48 INFO  ConnectionUtil:52 - Connected to db
 2021-03-07 14:41:33 INFO  ConnectionUtil:42 - Connection successful
 2021-03-07 14:41:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 17:13:18 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 17:13:18 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 17:53:02 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 17:53:02 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 17:53:19 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 17:53:19 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 17:54:01 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 17:54:01 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:06:10 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:06:10 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:11:32 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:11:32 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:11:32 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:11:32 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:11:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:11:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:11:34 WARN  ExpenseDAOImpl:72 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: missing FROM-clause entry for table "e"
+  Position: 133
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:67)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:21)
+	at com.revature.services.ExpenseService.lambda$0(ExpenseService.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:31)
+2021-03-08 18:15:19 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:15:19 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:15:20 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:15:20 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:15:21 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:15:21 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:15:21 WARN  ExpenseDAOImpl:72 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: missing FROM-clause entry for table "e"
+  Position: 107
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:67)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:21)
+	at com.revature.services.ExpenseService.lambda$0(ExpenseService.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:31)
+2021-03-08 18:16:00 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:16:00 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:16:01 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:16:01 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:16:02 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:16:02 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:16:02 WARN  ExpenseDAOImpl:72 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: column "breakfast" does not exist
+  Position: 78
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:67)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:21)
+	at com.revature.services.ExpenseService.lambda$0(ExpenseService.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:31)
+2021-03-08 18:17:31 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:17:31 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:17:32 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:17:32 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:17:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:17:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:17:33 WARN  ExpenseDAOImpl:72 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: insert or update on table "reimbursements" violates foreign key constraint "reimbursements_resolver_fkey"
+  Detail: Key (resolver_id)=(0) is not present in table "users".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:67)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:21)
+	at com.revature.services.ExpenseService.lambda$0(ExpenseService.java:34)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:31)
+2021-03-08 18:25:18 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:25:18 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:25:19 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:25:19 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:25:20 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:25:20 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:33:03 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:33:03 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:33:04 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:33:04 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:33:05 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:33:05 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:37:32 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:37:32 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:37:32 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:37:32 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:37:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:37:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:40:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:40:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:40:34 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:40:34 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:40:35 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:40:35 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:43:50 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:43:50 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:43:50 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:43:50 INFO  ConnectionUtil:52 - Connected to db
+2021-03-08 18:43:51 INFO  ConnectionUtil:42 - Connection successful
+2021-03-08 18:43:51 INFO  ConnectionUtil:52 - Connected to db

@@ -53,7 +53,32 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 	@Override
 	public boolean update(Expense e) {
 		
-		return false;
+		PreparedStatement stmt = null;
+
+		try {
+
+			Connection conn = ConnectionUtil.getConnection();
+			String sql = "";
+			if (e.getResolver().getUserId() == 0) {
+				sql = "UPDATE reimbursements \r\n"
+						+ "	SET resolved = " + e.getResolved() + ", resolver_id = null, description = '" + e.getDescription() + "'\r\n"
+						+ "	WHERE reimb_id = " + e.getReimbId();
+			} else {
+				sql = "UPDATE reimbursements \r\n"
+						+ "	SET resolved = " + e.getResolved() + ", resolver_id = " + e.getResolver().getUserId() + ", description = '" + e.getDescription() + "'\r\n"
+						+ "	WHERE reimb_id = " + e.getReimbId();
+			}
+
+			stmt = conn.prepareStatement(sql);
+			stmt.execute();
+
+		} catch (SQLException ex) {
+			log.warn("Unable to update expense", ex);
+			return false;
+		}
+
+		log.info("Expense updated");
+		return true;
 	}
 
 	@Override
@@ -70,10 +95,10 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 						+ "resolver_id, resolvers.first_name as resolver_first_name, resolvers.last_name as resolver_last_name, \r\n"
 						+ "rs.status_id, rs.status_name, rt.type_id, rt.type_name \r\n"
 						+ "from reimbursements\r\n"
-						+ "	inner join users authors on reimbursements.author_id = authors.user_id\r\n"
-						+ "	inner join users resolvers on reimbursements.resolver_id = resolvers.user_id \r\n"
-						+ "	inner join reimb_type rt on reimbursements.type_id = rt.type_id \r\n"
-						+ "	inner join reimb_status rs on reimbursements.status_id = rs.status_id";
+						+ "	left join users authors on reimbursements.author_id = authors.user_id\r\n"
+						+ "	left join users resolvers on reimbursements.resolver_id = resolvers.user_id \r\n"
+						+ "	left join reimb_type rt on reimbursements.type_id = rt.type_id \r\n"
+						+ "	left join reimb_status rs on reimbursements.status_id = rs.status_id;";
 				
 				PreparedStatement stmt = conn.prepareStatement(sql);
 

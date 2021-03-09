@@ -27,6 +27,14 @@ public class ExpenseService {
 	
 	public static void main(String[] args) {
 		System.out.println(findAll());
-		
+		List<Expense> elist = findAll();
+		elist.forEach((e) -> {
+			if (e.getReimbId() == 2) {
+				e.setDescription("Lunch");
+
+				System.out.println(update(e));
+			}
+		});
+
 	}
 }
