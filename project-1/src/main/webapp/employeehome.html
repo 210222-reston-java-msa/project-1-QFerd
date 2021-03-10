@@ -11,12 +11,29 @@
 <link rel="stylesheet" href="styles/employeehome.css">
 </head>
 <body>
-	<div class="jumbotron">
-        <p class="logout">
-            <button class="btn success" id="logout-btn">Logout</button>
-        </p>
-		<h1 id="welcome">Welcome</h1>
+	<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <p class="logout">
+          <button class="btn success" id="logout-btn">Logout</button>
+      </p>
+      <h1 class="display-4" id="welcome">Welcome</h1>
+  </div>
 	</div>
+
+	<table class="table table-hover exp-table">
+        <thead>
+          <tr>
+            <th scope="col">Submitted</th>
+            <th scope="col">Status</th>
+            <th scope="col">Resolved</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Type</th>
+		      	<th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
 	
     <button class="btn new-expense-btn"><a href="expense-request.html">+ New Expense</a></button>
 	<script src="scripts/employeehome.js"></script>

@@ -154,24 +154,24 @@ public class RequestHelper {
 		
 		pw.println(om.writeValueAsString(expenseList));
 	}
-	
-	public static void viewRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
-
-		BufferedReader reader = req.getReader();
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		while (line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = s.toString();
-		
-		PrintWriter pw = res.getWriter();
-		res.setContentType("application.json");
-		pw.println(s);
-	}
+	//DELETE:
+//	public static void viewRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
+//
+//		BufferedReader reader = req.getReader();
+//		StringBuilder s = new StringBuilder();
+//		
+//		String line = reader.readLine();
+//		while (line != null) {
+//			s.append(line);
+//			line = reader.readLine();
+//		}
+//		
+//		String body = s.toString();
+//		
+//		PrintWriter pw = res.getWriter();
+//		res.setContentType("application.json");
+//		pw.println(s);
+//	}
 	
 	public static void manageRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
 	
@@ -188,7 +188,11 @@ public class RequestHelper {
 		
 		Expense expense = om.readValue(body, Expense.class);
 		
-		//continue later:
+		log.info("manageRequest() called, expense mapped: " + expense);
+		
+		ExpenseService.update(expense);
+		
+		log.info("Update request recieved, service layer called.");
 	
 	}
 

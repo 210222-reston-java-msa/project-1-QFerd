@@ -10,7 +10,7 @@ function newExpense() {
     console.log(expense);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/project-1/newExpense");
+    xhr.open("POST", "http://localhost:8080/project-1/new-expense");
     xhr.send(JSON.stringify(expense));
 
 }

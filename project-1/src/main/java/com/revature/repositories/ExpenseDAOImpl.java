@@ -59,13 +59,15 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 
 			Connection conn = ConnectionUtil.getConnection();
 			String sql = "";
-			if (e.getResolver().getUserId() == 0) {
+			if (e.getResolver().getUserId() != 0) {
+				//Description included for debugging purposes
 				sql = "UPDATE reimbursements \r\n"
-						+ "	SET resolved = " + e.getResolved() + ", resolver_id = null, description = '" + e.getDescription() + "'\r\n"
+						+ "	SET resolved = '" + e.getResolved() + "', resolver_id = " + e.getResolver().getUserId() + 
+						", status_id = " + e.getStatusId() + ", description = '" + e.getDescription() + "'\r\n"
 						+ "	WHERE reimb_id = " + e.getReimbId();
 			} else {
 				sql = "UPDATE reimbursements \r\n"
-						+ "	SET resolved = " + e.getResolved() + ", resolver_id = " + e.getResolver().getUserId() + ", description = '" + e.getDescription() + "'\r\n"
+						+ "	SET resolved = null, resolver_id = null, description = '" + e.getDescription() + "'\r\n"
 						+ "	WHERE reimb_id = " + e.getReimbId();
 			}
 

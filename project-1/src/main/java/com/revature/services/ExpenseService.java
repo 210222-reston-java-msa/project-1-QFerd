@@ -2,12 +2,17 @@ package com.revature.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.revature.models.Expense;
 import com.revature.models.User;
 import com.revature.repositories.ExpenseDAO;
 import com.revature.repositories.ExpenseDAOImpl;
+import com.revature.util.RequestHelper;
 
 public class ExpenseService {
+
+	private static Logger log = Logger.getLogger(ExpenseService.class);
 	
 	public static ExpenseDAO eDao = new ExpenseDAOImpl();
 	
@@ -22,19 +27,23 @@ public class ExpenseService {
 	}
 	
 	public static List<Expense> findAll() {
-		return eDao.findAll();
+		List<Expense> expenseList = eDao.findAll();
+		log.info("Expense list recieved by ExpenseService:" + expenseList);
+		
+		return expenseList;
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(findAll());
-		List<Expense> elist = findAll();
-		elist.forEach((e) -> {
-			if (e.getReimbId() == 2) {
-				e.setDescription("Lunch");
-
-				System.out.println(update(e));
+		List<Expense> expenseList = findAll();
+		System.out.println(expenseList);
+		Expense expense = null;
+		for (Expense e : expenseList) {
+			if (e.getReimbId() == 1) {
+				expense = e;
+				expense.setDescription("Hotel");
 			}
-		});
+		}
+		update(expense);
 
 	}
 }

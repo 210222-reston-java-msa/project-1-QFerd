@@ -1,22 +1,28 @@
-console.log(sessionStorage.getItem('expense'));
-
-expense = JSON.parse(sessionStorage.getItem('expense'))
-
 //cache buttons
-let approveBtn = document.getElementById("approve")
-let denyBtn = document.getElementById("deny")
-let goBackBtn = document.getElementById("go-back")
+var approveBtn = document.getElementById("approve")
+var denyBtn = document.getElementById("deny")
+var goBackBtn = document.getElementById("go-back")
 
 //cache form fields
-let reimbId = document.getElementById('reimb-id')
-let submitted = document.getElementById('submitted')
-let empName = document.getElementById('emp-name')
-let empId = document.getElementById('emp-id')
-let expType = document.getElementById('exp-type')
-let expAmt = document.getElementById('exp-amt')
-let desc = document.getElementById('desc')
-let status = document.getElementById('status')
+var reimbId = document.getElementById('reimb-id')
+var submitted = document.getElementById('submitted')
+var empName = document.getElementById('emp-name')
+var empId = document.getElementById('emp-id')
+var expType = document.getElementById('exp-type')
+var expAmt = document.getElementById('exp-amt')
+var desc = document.getElementById('desc')
+var status = document.getElementById('status')
+var resolved = document.getElementById('resolved')
+var resolverName = document.getElementById('resolver-name')
+var resolverId = document.getElementById('resolver-id')
 
+//Should show string:
+console.log(sessionStorage.getItem('expense'))
+var expense = JSON.parse(sessionStorage.getItem('expense'))
+//Should be object:
+console.log(expense);
+
+status = expense.status;
 reimbId.innerHTML = expense.reimbId
 submitted.innerHTML = new Intl.DateTimeFormat('default', {
     year: 'numeric',
@@ -31,16 +37,78 @@ empId.innerHTML = expense.author.userId
 expType.innerHTML = expense.type
 expAmt.innerHTML = "$" + expense.amount
 desc.innerHTML = expense.description
-status.innerHtml = expense.status
 
-if (expense.status = "Pending") {
+if (expense.resolved === null) {
+  resolved.innerHTML = "-";
+} else {
+  resolved.innerHTML = new Intl.DateTimeFormat('default', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short'
+    }).format(expense.resolved)
+}
+
+if (expense.resolver.firstName === null && expense.resolver.lastName === null) {
+  resolverName.innerHTML ="-";
+} else {
+  resolverName.innerHTML = expense.resolver.firstName + " " + expense.resolver.lastName
+}
+
+if (expense.resolver.userId === 0) {
+  resolverId.innerHTML = "-";
+} else {
+  resolverId.innerHTML = expense.resolver.userId
+}
+//Add event listener to approveBtn
+if (expense.status === "Pending") {
   approveBtn.addEventListener("click", function () {
-    
+      console.log("button clicked");
+
+      var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+
+      console.log(currentUser);
+      //Modify expense 
+      expense.resolver.userId = currentUser.userId
+      expense.resolved = new Date() 
+      expense.status = "Approved";
+      expense.statusId = 2;
+      expense.resolver.firstName = currentUser.firstName;
+      expense.resolver.lastName = currentUser.lastName;
+
+      //Return to server to update resource
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://localhost:8080/project-1/manageRequest")
-      JSON.parse(sessionStorage.getItem('currentUser')).userId = expense.resolver.userId
-      JSON.parse(sessionStorage.getItem('currentUser')).resolved = new Date() 
-      xhr.send(JSON.stringify(expense))
+      xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          //Reflect changes in html
+          status.innerHTML = expense.status
+          resolved.innerHTML = expense.resolved;
+          resolverName.innerHTML = expense.resolver.firstName + " " + expense.resolver.lastName;
+          resolverId.innerHTML = expense.resolver.userId;
+    
+                //Update session stored 'expenseList'
+          //Should be string:
+          console.log(sessionStorage.getItem('expenseList'))
+          
+          var expenseList = JSON.parse(sessionStorage.getItem('expenseList'));
+          //Should be object:
+          console.log(expenseList);
+    
+          for (let i = 0; i < expenseList.length; i++) {
+            if (expenseList[i].reimbId === expense.reimbId) {
+              expenseList[i].resolver.firstName = expense.resolver.firstName;
+              expenseList[i].resolver.lastName = expense.resolver.lastName;
+              sessionStorage.setItem('expenseList', JSON.stringify(expenseList));
+              //should be string
+              console.log(sessionStorage.getItem('expenseList'))
+            }
+          }
+        }
+      };
+      xhr.open("POST", "http://localhost:8080/project-1/manage-request");
+      xhr.send(JSON.stringify(expense));
 
   })
 }

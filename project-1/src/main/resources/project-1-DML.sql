@@ -35,7 +35,7 @@ update reimbursements
 	where reimb_id = 
 	
 update reimbursements 
-	set description = 'Lunch' 
+	set resolved = null, resolver_id = null, status_id = 1
 	where reimb_id = 2;
 	
 	

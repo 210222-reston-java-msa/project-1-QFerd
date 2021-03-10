@@ -202,3 +202,52 @@ org.postgresql.util.PSQLException: ERROR: insert or update on table "reimburseme
 2021-03-08 18:43:50 INFO  ConnectionUtil:52 - Connected to db
 2021-03-08 18:43:51 INFO  ConnectionUtil:42 - Connection successful
 2021-03-08 18:43:51 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 15:57:57 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 15:57:57 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 15:57:57 INFO  ExpenseService:31 - Expense list recieved by ExpenseService:
+2021-03-09 15:57:57 INFO  ExpenseService:32 - [Expense [reimbId=2, amount=50.0, submitted=2021-03-08 17:36:48.531821, resolved=null, description=Lunch, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=1], status=Pending, statusId=1, type=Travel, typeId=1], Expense [reimbId=1, amount=100.0, submitted=2021-03-07 08:44:56.15115, resolved=2021-03-07 09:02:44.311718, description=Dinner, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=1], status=Approved, statusId=2, type=Travel, typeId=1]]
+2021-03-09 16:59:13 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 16:59:13 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 16:59:13 INFO  ExpenseService:31 - Expense list recieved by ExpenseService:[Expense [reimbId=2, amount=50.0, submitted=2021-03-08 17:36:48.531821, resolved=null, description=Lunch, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=1], status=Pending, statusId=1, type=Travel, typeId=1], Expense [reimbId=1, amount=100.0, submitted=2021-03-07 08:44:56.15115, resolved=2021-03-07 09:02:44.311718, description=Dinner, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=1], status=Approved, statusId=2, type=Travel, typeId=1]]
+2021-03-09 16:59:14 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 16:59:14 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 16:59:14 WARN  ExpenseDAOImpl:78 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: syntax error at or near "09"
+  Position: 52
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:75)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:26)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:45)
+2021-03-09 17:01:49 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 17:01:49 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 17:01:49 INFO  ExpenseService:31 - Expense list recieved by ExpenseService:[Expense [reimbId=2, amount=50.0, submitted=2021-03-08 17:36:48.531821, resolved=null, description=Lunch, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=1], status=Pending, statusId=1, type=Travel, typeId=1], Expense [reimbId=1, amount=100.0, submitted=2021-03-07 08:44:56.15115, resolved=2021-03-07 09:02:44.311718, description=Dinner, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=1], status=Approved, statusId=2, type=Travel, typeId=1]]
+2021-03-09 17:06:39 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 17:06:39 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 17:06:40 INFO  ExpenseService:31 - Expense list recieved by ExpenseService:[Expense [reimbId=2, amount=50.0, submitted=2021-03-08 17:36:48.531821, resolved=null, description=Lunch, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=1], status=Pending, statusId=1, type=Travel, typeId=1], Expense [reimbId=1, amount=100.0, submitted=2021-03-07 08:44:56.15115, resolved=2021-03-07 09:02:44.311718, description=Dinner, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=1], status=Approved, statusId=2, type=Travel, typeId=1]]
+2021-03-09 17:06:40 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 17:06:40 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 17:06:41 WARN  ExpenseDAOImpl:78 - Unable to update expense
+org.postgresql.util.PSQLException: ERROR: syntax error at or near "description"
+  Position: 101
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.update(ExpenseDAOImpl.java:75)
+	at com.revature.services.ExpenseService.update(ExpenseService.java:26)
+	at com.revature.services.ExpenseService.main(ExpenseService.java:46)
+2021-03-09 17:07:17 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 17:07:17 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 17:07:18 INFO  ExpenseService:31 - Expense list recieved by ExpenseService:[Expense [reimbId=2, amount=50.0, submitted=2021-03-08 17:36:48.531821, resolved=null, description=Lunch, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=1], status=Pending, statusId=1, type=Travel, typeId=1], Expense [reimbId=1, amount=100.0, submitted=2021-03-07 08:44:56.15115, resolved=2021-03-07 09:02:44.311718, description=Dinner, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=2], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=1], status=Approved, statusId=2, type=Travel, typeId=1]]
+2021-03-09 17:07:18 INFO  ConnectionUtil:42 - Connection successful
+2021-03-09 17:07:18 INFO  ConnectionUtil:52 - Connected to db
+2021-03-09 17:07:19 INFO  ExpenseDAOImpl:82 - Expense updated
