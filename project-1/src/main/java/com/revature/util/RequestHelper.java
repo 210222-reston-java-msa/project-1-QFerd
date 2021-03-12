@@ -165,6 +165,7 @@ public class RequestHelper {
 		System.out.println(receiptStream);
 		
 		byte[] receiptBytes = receiptStream.readAllBytes();
+		log.info(receiptBytes);
 		
 		HttpSession session = req.getSession(false);
 		User u = (User) session.getAttribute("currentUser");
@@ -180,7 +181,7 @@ public class RequestHelper {
 		
 		//If manager is logged in, no need to re-retrieve expenses from database after activity
 		//Just grab from session
-		if (currentUser.getRoleId() == 1 && session.getAttribute("expenseList") == null) {
+		if (currentUser.getRoleId() == 1 && session.getAttribute("expenseList") != null) {
 			List<Expense> expenseList = (List<Expense>) session.getAttribute("expenseList");
 			
 			log.info("Expense list retrieved from session: \n" + expenseList);

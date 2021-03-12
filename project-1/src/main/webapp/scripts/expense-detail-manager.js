@@ -2,6 +2,7 @@
 var approveBtn = document.getElementById("approve")
 var denyBtn = document.getElementById("deny")
 var goBackBtn = document.getElementById("go-back")
+var receiptBtn = document.getElementById("receipt-btn")
 
 //cache form fields
 var reimbId = document.getElementById('reimb-id')
@@ -10,7 +11,7 @@ var empName = document.getElementById('emp-name')
 var empId = document.getElementById('emp-id')
 var expType = document.getElementById('exp-type')
 var expAmt = document.getElementById('exp-amt')
-var desc = document.getElementById('desc')
+var desc = document.getElementById('description')
 var status = document.getElementById('status')
 var resolved = document.getElementById('resolved')
 var resolverName = document.getElementById('resolver-name')
@@ -71,7 +72,10 @@ goBackBtn.addEventListener("click", goBack);
 approveBtn.addEventListener("click", approve)
 denyBtn.addEventListener("click", deny)
 
-//===================APPROVE/DENY/GO BACK BUTTONS
+//------------Add event listener to view receipt
+receiptBtn.addEventListener("click", viewReceipt)
+
+//===================APPROVE/DENY/GO BACK BUTTONS/VIEW RECEIPT
 function approve() {
   console.log("button clicked");
 
@@ -108,6 +112,10 @@ function deny() {
 
 function goBack() {
   window.location = "http://localhost:8080/project-1/managerhome.html";
+}
+
+function viewReceipt() {
+  window.location = "http://localhost:8080/project-1/receipt.html"
 }
 
 

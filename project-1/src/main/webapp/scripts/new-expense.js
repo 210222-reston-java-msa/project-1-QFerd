@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
 
         // Bind the FormData object and the form element (form variable is hoisted)
         const FD = new FormData(form);
+        console.log(FD)
 
         // Define what happens on successful data submission
         xhr.onreadystatechange = function () {
