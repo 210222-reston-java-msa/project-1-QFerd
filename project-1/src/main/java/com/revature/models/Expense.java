@@ -212,8 +212,6 @@ public class Expense {
 	public String toString() {
 		return "Expense [reimbId=" + reimbId + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
 				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
-				+ ", status=" + status + ", statusId=" + statusId + ", type=" + type + ", typeId=" + typeId
-				+ ", receiptBytes=" + Arrays.toString(receiptBytes) + "]\n";
+				+ ", status=" + status + ", statusId=" + statusId + ", type=" + type + ", typeId=" + typeId + "]\n";
 	}
-	
 }

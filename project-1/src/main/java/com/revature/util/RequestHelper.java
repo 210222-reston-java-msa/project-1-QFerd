@@ -1,13 +1,23 @@
 package com.revature.util;
 
 import java.io.BufferedReader;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -165,7 +175,6 @@ public class RequestHelper {
 		System.out.println(receiptStream);
 		
 		byte[] receiptBytes = receiptStream.readAllBytes();
-		log.info(receiptBytes);
 		
 		HttpSession session = req.getSession(false);
 		User u = (User) session.getAttribute("currentUser");
@@ -261,14 +270,70 @@ public class RequestHelper {
 				expenseList.get(i).getResolver().setLastName(currentUser.getLastName());
 				
 				session.setAttribute("expenseList", expenseList);
-				log.info("manageRequest() called, expense in storage updated: \n" + expenseList.get(i));
+				log.info("RequestHelper: manageRequest() called, expense in storage updated: \n" + expenseList.get(i));
 				
 				ExpenseService.update(expenseList.get(i));
-				log.info("Update request recieved, update() in service layer called.");
+				log.info("RequestHelper: Update request recieved, update() in service layer called.");
 				break;
 			}
 		}
+		
+		//====================SEND EMAIL
+
+		
+				String recipient = expenseList.get(i).getAuthor().getEmail();
+
+				
+				System.out.println("Preparing to send email");
+		        Properties properties = new Properties();
+
+		        //Enable authentication
+		        properties.put("mail.smtp.auth", "true");
+		        //Set TLS encryption enabled
+		        properties.put("mail.smtp.starttls.enable", "true");
+		        //Set SMTP host
+		        properties.put("mail.smtp.host", "smtp.gmail.com");
+		        //Set smtp port
+		        properties.put("mail.smtp.port", "587");
+
+		        //Your gmail address
+		        String myAccountEmail = "fakecompanyhr@gmail.com";
+		        //Your gmail password
+		        String password = "project1demo";
+
+		        //Create a session with account credentials
+		        Session emailSession = Session.getInstance(properties, new Authenticator() {
+		            @Override
+		            protected PasswordAuthentication getPasswordAuthentication() {
+		                return new PasswordAuthentication(myAccountEmail, password);
+		            }
+		        });
+
+		        //Prepare email message
+		        Message message = null;
+		        try {
+		            message = new MimeMessage(emailSession);
+		            message.setFrom(new InternetAddress(myAccountEmail));
+		            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+		            message.setSubject("Reimbursement request updated");
+		            String htmlCode = "<h1> A manager has updated your reimbursement request.</h1> <br/> "
+		            		+ "<h2><b>Please login to your account to view the changes. </b></h2>";
+		            message.setContent(htmlCode, "text/html");
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		        }
+		        
+
+		        //Send mail
+		        try {
+					Transport.send(message);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        System.out.println("Message sent successfully");
+		    }
+		    
 	
-	}
 
 }

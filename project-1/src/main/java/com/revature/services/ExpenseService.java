@@ -28,14 +28,14 @@ public class ExpenseService {
 	
 	public static List<Expense> findAll() {
 		List<Expense> expenseList = eDao.findAll();
-		log.info("ExpenseService: Expense list recieved:" + expenseList);
+		log.info("ExpenseService: Expense list recieved: \n" + expenseList);
 		
 		return expenseList;
 	}
 	
 	public static void main(String[] args) {
 		List<Expense> expenseList = findAll();
-		System.out.println(expenseList);
+
 //		Expense expense = null;
 //		for (Expense e : expenseList) {
 //			if (e.getReimbId() == 1) {
