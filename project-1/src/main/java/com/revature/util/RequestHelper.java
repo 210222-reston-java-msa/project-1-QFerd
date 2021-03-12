@@ -282,7 +282,12 @@ public class RequestHelper {
 
 		
 				String recipient = expenseList.get(i).getAuthor().getEmail();
-
+				String change = null;
+				if (expenseList.get(i).getStatusId() == 2) {
+					change = "approved";
+				} else if (expenseList.get(i).getStatusId() == 3) {
+					change = "denied";
+				}
 				
 				System.out.println("Preparing to send email");
 		        Properties properties = new Properties();
@@ -316,7 +321,7 @@ public class RequestHelper {
 		            message.setFrom(new InternetAddress(myAccountEmail));
 		            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 		            message.setSubject("Reimbursement request updated");
-		            String htmlCode = "<h1> A manager has updated your reimbursement request.</h1> <br/> "
+		            String htmlCode = "<h1> A manager has " + change + " your reimbursement request.</h1> <br/> "
 		            		+ "<h2><b>Please login to your account to view the changes. </b></h2>";
 		            message.setContent(htmlCode, "text/html");
 		        } catch (Exception ex) {

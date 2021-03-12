@@ -1,4 +1,4 @@
-	// capture the welcome element and modofy it so that it says welcome + username
+	//REDIRECT TO INDEX/WELCOME USER
 	let welcome = document.getElementById('welcome');
 
 	let userString = sessionStorage.getItem('currentUser');
@@ -46,7 +46,7 @@
 
 				let authorName = document.createElement('td')
 				expenseRow.append(authorName)
-				authorName.innerHTML = expenseList[i].author.firstName + expenseList[i].author.lastName
+				authorName.innerHTML = expenseList[i].author.firstName + " " + expenseList[i].author.lastName
 
 				let authorId = document.createElement('td')
 				expenseRow.append(authorId)
@@ -94,9 +94,33 @@
 
 				})
 			}
+			document.getElementById("search").addEventListener("change", filter);
+
 		}
 	}
 
+	// DEFINE FILTER FUNCTION
+	function myFunction() {
+		// Declare variables
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById("search");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("exp-table");
+		tr = table.getElementsByTagName("tr");
+	  
+		// Loop through all table rows, and hide those who don't match the search query
+		for (i = 0; i < tr.length; i++) {
+		  td = tr[i].getElementsByTagName("td")[1];
+		  if (td) {
+			txtValue = td.innerHTML;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			  tr[i].style.display = "";
+			} else {
+			  tr[i].style.display = "none";
+			}
+		  }
+		}
+	  }
 	//============================LOGOUT
 	document.getElementById('logout-btn').addEventListener('click', function () {
 		

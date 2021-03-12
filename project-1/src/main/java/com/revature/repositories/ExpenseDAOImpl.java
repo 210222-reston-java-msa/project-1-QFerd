@@ -102,7 +102,7 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 						+ "	left join users resolvers on reimbursements.resolver_id = resolvers.user_id \r\n"
 						+ "	left join reimb_type rt on reimbursements.type_id = rt.type_id \r\n"
 						+ "	left join reimb_status rs on reimbursements.status_id = rs.status_id"
-						+ " order by reimb_id asc";
+						+ " order by submitted desc";
 				
 				PreparedStatement stmt = conn.prepareStatement(sql);
 

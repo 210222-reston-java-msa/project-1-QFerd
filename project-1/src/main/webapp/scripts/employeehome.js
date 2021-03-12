@@ -4,7 +4,7 @@
 
 	let userString = sessionStorage.getItem('currentUser');
 	
-	//===================REDIRECT TO INDEX 
+	//===================REDIRECT TO INDEX/WELCOME USER
 	if (userString === null) {
 		window.location = "http://localhost:8080/project-1/";
 	} else {

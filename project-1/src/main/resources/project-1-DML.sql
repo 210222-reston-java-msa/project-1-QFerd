@@ -29,7 +29,8 @@ insert into reimbursements (amount, description, author_id, type_id)
 
 insert into reimbursements (amount, description, author_id, type_id)
 	values (50, 'Lunch', 4, 1);
-
+insert into users (username, pw, first_name, last_name, email, role_id)
+			values ('Daniel', 'dlpw', 'Daniel', 'Leason', 'dl@gmail.com', 2)
 update users 
 	set email = 'pcook755@yahoo.com'
 	where user_id = 4;
