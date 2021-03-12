@@ -3,10 +3,14 @@
 }
 
 label {
-    font-weight: bold;
+
 }
 
+.form-control[readonly] {
+    background-color: white;
+}
 
 #go-back {
     float: right;
 }
+

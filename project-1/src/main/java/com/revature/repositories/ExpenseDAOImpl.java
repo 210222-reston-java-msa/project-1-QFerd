@@ -1,5 +1,6 @@
 package com.revature.repositories;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,16 +27,16 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 		try {
 
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "INSERT INTO reimbursements (amount, submitted, description, author_id, status_id, type_id) "
+			String sql = "INSERT INTO reimbursements (amount, description, author_id, status_id, type_id, reciept)"
 						+ "VALUES (?, ?, ?, ?, ?, ?)";
 
 			stmt = conn.prepareStatement(sql);
 			stmt.setDouble(1, e.getAmount());
-			stmt.setTimestamp(2, e.getSubmitted());
-			stmt.setString(3, e.getDescription());
-			stmt.setInt(4, e.getAuthor().getUserId());
-			stmt.setInt(5, e.getStatusId());
-			stmt.setInt(6, e.getTypeId());
+			stmt.setString(2, e.getDescription());
+			stmt.setInt(3, e.getAuthor().getUserId());
+			stmt.setInt(4, e.getStatusId());
+			stmt.setInt(5, e.getTypeId());
+			stmt.setBinaryStream(6, e.getReceiptStream());
 
 			if (!stmt.execute()) {
 				return false;
@@ -95,7 +96,7 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 				String sql = "select reimb_id, amount, submitted, resolved, description, \r\n"
 						+ "author_id, authors.first_name as author_first_name, authors.last_name as author_last_name, authors.email as author_email, \r\n"
 						+ "resolver_id, resolvers.first_name as resolver_first_name, resolvers.last_name as resolver_last_name, \r\n"
-						+ "rs.status_id, rs.status_name, rt.type_id, rt.type_name \r\n"
+						+ "rs.status_id, rs.status_name, rt.type_id, rt.type_name, receipt \r\n"
 						+ "from reimbursements\r\n"
 						+ "	left join users authors on reimbursements.author_id = authors.user_id\r\n"
 						+ "	left join users resolvers on reimbursements.resolver_id = resolvers.user_id \r\n"
@@ -123,9 +124,10 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 					String status = rs.getString("status_name");
 					int typeId = rs.getInt("type_id");
 					String type = rs.getString("type_name");
+					InputStream receiptStream = rs.getBinaryStream("receipt");
 
 					
-					Expense e = new Expense(reimbId, amount, submitted, resolved, description, new User(authorId, authorFirstName, authorLastName, authorEmail), new User(resolverId, resolverFirstName, resolverLastName), status, statusId, type, typeId);
+					Expense e = new Expense(reimbId, amount, submitted, resolved, description, new User(authorId, authorFirstName, authorLastName, authorEmail), new User(resolverId, resolverFirstName, resolverLastName), status, statusId, type, typeId, receiptStream);
 					list.add(e);
 				}
 

@@ -3,6 +3,7 @@ package com.revature.util;
 import java.io.BufferedReader;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
@@ -62,7 +64,7 @@ public class RequestHelper {
 			int roleId = loginAttempt.getRoleId();
 			// get the current session OR create one if it doesn't exist
 			HttpSession session = req.getSession();
-			session.setAttribute("username", username);
+			session.setAttribute("currentUser", u);
 			
 			// Attaching the print writer to our response
 			PrintWriter pw = res.getWriter();
@@ -105,29 +107,32 @@ public class RequestHelper {
 	public static void newExpense(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		// BufferedReader method:
 		
-		BufferedReader reader = req.getReader();
-		StringBuilder s = new StringBuilder();
+//		BufferedReader reader = req.getReader();
+//		StringBuilder s = new StringBuilder();
+//		
+//		String line = reader.readLine();
+//		while (line != null) {
+//			s.append(line);
+//			line = reader.readLine();
+//		}
+//		
+//		String body = s.toString();
+//		
+//		Expense expenseTemp = om.readValue(body, Expense.class);
+//		
+//		HttpSession session = req.getSession(false);
+//		User u = (User) session.getAttribute("currentUser");
+//		
+//		Expense expense = new Expense(expenseTemp.getAmount(), expenseTemp.getDescription(), u, 1, expenseTemp.getType());
+//		log.info("New expense mapped: \n" + expense);
+//		
+//		ExpenseService.insert(expense);
 		
-		String line = reader.readLine();
-		while (line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = s.toString();
-		
-		Expense expenseTemp = om.readValue(body, Expense.class);
-		
-		HttpSession session = req.getSession(false);
-		String username = (String) session.getAttribute("username");
-		
-		Expense expense = new Expense(expenseTemp.getAmount(), expenseTemp.getDescription(), username, 1, expenseTemp.getType());
-		log.info(expense);
 		
 		// getParameter method not working
 //		HttpSession session = req.getSession(false);
 //		String username = (String) session.getAttribute("username");
-
+//
 //		String type = req.getParameter("type");
 //		double amount = Double.parseDouble(req.getParameter("amount"));
 //		String description = req.getParameter("description");
@@ -144,15 +149,57 @@ public class RequestHelper {
 //		// after we parse it. (We parse it in JavaScript)
 //		pw.println(om.writeValueAsString(expense));
 		
+
+		//Retrieve form data
+		String type = req.getParameter("type");
+		double amount = Double.parseDouble(req.getParameter("amount"));
+		String description = req.getParameter("description");
+		InputStream receiptStream = null;
+		try {
+			Part receiptPart = req.getPart("receipt");
+			receiptStream = receiptPart.getInputStream(); 
+		} catch (IOException | ServletException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println(type);
+		System.out.println(amount);
+		System.out.println(description);
+		System.out.println(receiptStream);
+		
+		HttpSession session = req.getSession(false);
+		User u = (User) session.getAttribute("currentUser");
+		Expense expense = new Expense(amount, description, u, 1, type, receiptStream);
+		log.info("New expense mapped: \n" + expense);
+			
 	}
 	
 	public static void retrieveExpenseRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		List<Expense> expenseList = ExpenseService.findAll();
-		
-		PrintWriter pw = res.getWriter();
-		res.setContentType("application/json");
-		
-		pw.println(om.writeValueAsString(expenseList));
+		HttpSession session = req.getSession();
+		if (session.getAttribute("expenseList") == null) {
+			List<Expense> expenseList = ExpenseService.findAll();
+			
+			session.setAttribute("expenseList", expenseList);
+			
+			log.info("Expense list retrieved from data base and stored in new session: \n" + expenseList);
+			
+			PrintWriter pw = res.getWriter();
+			res.setContentType("application/json");
+			
+			pw.println(om.writeValueAsString(expenseList));
+			
+
+		} else {
+			List<Expense> expenseList = (List<Expense>) session.getAttribute("expenseList");
+			
+			log.info("Expense lsit retrieved from session: \n" + expenseList);
+			
+			PrintWriter pw = res.getWriter();
+			res.setContentType("application/json");
+			
+			pw.println(om.writeValueAsString(expenseList));
+			
+
+		}
 	}
 	//DELETE:
 //	public static void viewRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
@@ -174,7 +221,7 @@ public class RequestHelper {
 //	}
 	
 	public static void manageRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
-	
+	//1. Map expenseTemp
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
 		
@@ -186,13 +233,37 @@ public class RequestHelper {
 		
 		String body = s.toString();
 		
-		Expense expense = om.readValue(body, Expense.class);
+		Expense expenseTemp = om.readValue(body, Expense.class);
 		
-		log.info("manageRequest() called, expense mapped: " + expense);
+	//2. Grab expenseList from session and update in storage and in database
+		HttpSession session = req.getSession();
+		List<Expense> expenseList = (List<Expense>) session.getAttribute("expenseList");
 		
-		ExpenseService.update(expense);
-		
-		log.info("Update request recieved, service layer called.");
+		int i = 0;
+		for (i = 0; i < expenseList.size(); i++) {
+			if (expenseList.get(i).getReimbId() == expenseTemp.getReimbId()) {
+				
+				expenseList.get(i).setResolved(new Timestamp(System.currentTimeMillis()));
+				expenseList.get(i).getResolver().setUserId(expenseTemp.getResolver().getUserId());
+				expenseList.get(i).setStatusId(expenseTemp.getStatusId());
+				if (expenseTemp.getStatusId() == 2) {
+					expenseList.get(i).setStatus("Approved");
+				} else if (expenseTemp.getStatusId() == 3) {
+					expenseList.get(i).setStatus("Denied");
+				}
+				
+				User currentUser = (User) session.getAttribute("currentUser");
+				expenseList.get(i).getResolver().setFirstName(currentUser.getFirstName());
+				expenseList.get(i).getResolver().setLastName(currentUser.getLastName());
+				
+				session.setAttribute("expenseList", expenseList);
+				log.info("manageRequest() called, expense in storage updated: \n" + expenseList.get(i));
+				
+				ExpenseService.update(expenseList.get(i));
+				log.info("Update request recieved, update() in service layer called.");
+				break;
+			}
+		}
 	
 	}
 

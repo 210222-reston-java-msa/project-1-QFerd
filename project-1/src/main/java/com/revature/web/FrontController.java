@@ -2,15 +2,15 @@ package com.revature.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.util.RequestHelper;
 
-/**
- * Servlet implementation class FrontController
- */
+//===============MAIN============================
+@MultipartConfig
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
 			RequestHelper.processLogout(request, response);
 			break;
 		//For employee:
-		case "new-expense-form":
+		case "new-expense":
 			RequestHelper.newExpense(request, response);
 			break;
 		//For manager

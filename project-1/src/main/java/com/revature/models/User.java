@@ -57,10 +57,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public User(String username) {
-		this.username = username;
-	}
-
 	public int getUserId() {
 		return userId;
 	}

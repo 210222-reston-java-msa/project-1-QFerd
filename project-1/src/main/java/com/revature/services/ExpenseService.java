@@ -36,14 +36,14 @@ public class ExpenseService {
 	public static void main(String[] args) {
 		List<Expense> expenseList = findAll();
 		System.out.println(expenseList);
-		Expense expense = null;
-		for (Expense e : expenseList) {
-			if (e.getReimbId() == 1) {
-				expense = e;
-				expense.setDescription("Hotel");
-			}
-		}
-		update(expense);
+//		Expense expense = null;
+//		for (Expense e : expenseList) {
+//			if (e.getReimbId() == 1) {
+//				expense = e;
+//				expense.setDescription("Hotel");
+//			}
+//		}
+//		update(expense);
 
 	}
 }

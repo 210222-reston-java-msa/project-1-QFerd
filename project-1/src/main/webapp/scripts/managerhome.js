@@ -14,6 +14,7 @@
 		}	
 	}
 
+	//===========================POPULATE EXPENSE TABLE
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = populateExpenseTable; 
 	xhr.open('GET', "http://localhost:8080/project-1/expense-requests")
@@ -92,26 +93,19 @@
 					window.location = "http://localhost:8080/project-1/expense-detail-manager.html"	
 
 				})
-
-
 			}
 		}
 	}
 
-
-
-
-
-
-
-	// function logout() {
+	//============================LOGOUT
+	document.getElementById('logout-btn').addEventListener('click', function () {
 		
-	// 	let xhr = new XMLHttpRequest();
+		let xhr = new XMLHttpRequest();
 		
-	// 	xhr.open("POST", "http://localhost:8080/project-1/logout");
-	// 	xhr.send();
+		xhr.open("POST", "http://localhost:8080/project-1/logout");
+		xhr.send();
 		
-	// 	sessionStorage.removeItem('currentUser');
-	// 	window.location = "http://localhost:8080/project-1/";
+		sessionStorage.clear();
+		window.location = "http://localhost:8080/project-1/";
 		
-	// }
+	})

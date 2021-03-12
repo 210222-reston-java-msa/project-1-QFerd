@@ -16,10 +16,7 @@ function sendLogin(event) {
         password: pWord
     }
 
-
-
     let xhr = new XMLHttpRequest();
-
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             console.log("success");
@@ -37,9 +34,7 @@ function sendLogin(event) {
             } else if (currentUser.roleId == 2) {
             
             window.location = "http://localhost:8080/project-1/employeehome.html";
-            }
-
-            
+            } 
         }
 
         if (this.readyState === 4 && this.status === 204) { // 204 means NO CONTENT FOUND (but connection was made)
@@ -49,10 +44,8 @@ function sendLogin(event) {
             let childDiv = document.getElementById('warningText');
             childDiv.textContent = "Failed to login!  Username of Password is incorrect"
         }
-    }
-    
+    }    
     xhr.open("POST", "http://localhost:8080/project-1/login")
-
     xhr.send(JSON.stringify(loginTemplate))
 
 }

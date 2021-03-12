@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,15 +17,15 @@ public class Expense {
 	int statusId;
 	String type;
 	int typeId;
+	InputStream receiptStream;
 	
 	public Expense() {
 		super();
 	}
-		
-	public Expense(double amount, String description, String authorUsername, int statusId,
+	
+	public Expense(double amount, String description, User author, int statusId,
 			String type) {
 		super();
-		
 		this.amount = amount;
 		
 		//Timestamp will be created by database:
@@ -41,7 +42,7 @@ public class Expense {
 //		this.submitted = currentTimestamp;
 		
 		this.description = description;
-		this.author = new User(authorUsername);
+		this.author = author;
 		this.statusId = statusId;
 		this.type = type;
 		if (type.equals("Travel")) {
@@ -51,12 +52,49 @@ public class Expense {
 		} else if (type.equals("Supplies")) {
 			this.typeId = 3;
 		}
+		this.receiptStream = null;
 	}
 	
+	public Expense(int reimbId, double amount, String description, User author, int statusId,
+			String type, InputStream receiptStream) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;	
+		this.description = description;
+		this.author = author;
+		this.statusId = statusId;
+		this.type = type;
+		if (type.equals("Travel")) {
+			this.typeId = 1;
+		} else if (type.equals("Training")) {
+			this.typeId = 2;
+		} else if (type.equals("Supplies")) {
+			this.typeId = 3;
+		}
+		this.receiptStream = receiptStream;
+	}
 	
+	public Expense(double amount, String description, User author, int statusId,
+			String type, InputStream receiptStream) {
+		super();
+		
+		this.amount = amount;
+		this.description = description;
+		this.author = author;
+		this.statusId = statusId;
+		this.type = type;
+		if (type.equals("Travel")) {
+			this.typeId = 1;
+		} else if (type.equals("Training")) {
+			this.typeId = 2;
+		} else if (type.equals("Supplies")) {
+			this.typeId = 3;
+		}
+		this.receiptStream = receiptStream;
+	}
 
 	public Expense(int reimbId, double amount, Timestamp submitted, Timestamp resolved, String description, User author,
-			User resolver, String status, int statusId, String type, int typeId) {
+			User resolver, String status, int statusId, String type, int typeId, InputStream receiptStream) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
@@ -64,13 +102,12 @@ public class Expense {
 		this.resolved = resolved;
 		this.description = description;
 		this.author = author;
-		this.author.setRoleId(2);
 		this.resolver = resolver;
-		this.resolver.setRoleId(1);
 		this.status = status;
 		this.statusId = statusId;
 		this.type = type;
 		this.typeId = typeId;
+		this.receiptStream = receiptStream;
 	}
 
 	public int getReimbId() {
@@ -161,13 +198,25 @@ public class Expense {
 		this.typeId = typeId;
 	}
 
+		
+	
+	public InputStream getReceiptStream() {
+		return receiptStream;
+	}
+
+	public void setReceiptStream(InputStream receiptStream) {
+		this.receiptStream = receiptStream;
+	}
+
 	@Override
 	public String toString() {
 		return "Expense [reimbId=" + reimbId + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
 				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
-				+ ", status=" + status + ", statusId=" + statusId + ", type=" + type + ", typeId=" + typeId + "]";
+				+ ", status=" + status + ", statusId=" + statusId + ", type=" + type + ", typeId=" + typeId
+				+ ", receiptStream=" + receiptStream + "]";
 	}
-	
+
+
 	
 	
 	
