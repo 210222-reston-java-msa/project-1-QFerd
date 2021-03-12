@@ -28,7 +28,7 @@ public class ExpenseService {
 	
 	public static List<Expense> findAll() {
 		List<Expense> expenseList = eDao.findAll();
-		log.info("Expense list recieved by ExpenseService:" + expenseList);
+		log.info("ExpenseService: Expense list recieved:" + expenseList);
 		
 		return expenseList;
 	}

@@ -1,13 +1,11 @@
 package com.revature.util;
 
 import java.io.BufferedReader;
-
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -166,38 +164,43 @@ public class RequestHelper {
 		System.out.println(description);
 		System.out.println(receiptStream);
 		
+		byte[] receiptBytes = receiptStream.readAllBytes();
+		
 		HttpSession session = req.getSession(false);
 		User u = (User) session.getAttribute("currentUser");
-		Expense expense = new Expense(amount, description, u, 1, type, receiptStream);
+		Expense expense = new Expense(amount, description, u, 1, type, receiptBytes);
 		log.info("New expense mapped: \n" + expense);
-			
+		log.info("byte[] length: " + receiptBytes.length);
+		ExpenseService.insert(expense);
 	}
 	
 	public static void retrieveExpenseRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		HttpSession session = req.getSession();
-		if (session.getAttribute("expenseList") == null) {
+		User currentUser = (User) session.getAttribute("currentUser");
+		
+		//If manager is logged in, no need to re-retrieve expenses from database after activity
+		//Just grab from session
+		if (currentUser.getRoleId() == 1 && session.getAttribute("expenseList") == null) {
+			List<Expense> expenseList = (List<Expense>) session.getAttribute("expenseList");
+			
+			log.info("Expense list retrieved from session: \n" + expenseList);
+			
+			PrintWriter pw = res.getWriter();
+			res.setContentType("application/json");
+			
+			pw.println(om.writeValueAsString(expenseList));
+		} else {
+
 			List<Expense> expenseList = ExpenseService.findAll();
 			
 			session.setAttribute("expenseList", expenseList);
 			
-			log.info("Expense list retrieved from data base and stored in new session: \n" + expenseList);
+			log.info("RequestHelper: Expense list retrieved from data base and stored in new session: \n" + expenseList);
 			
 			PrintWriter pw = res.getWriter();
 			res.setContentType("application/json");
 			
 			pw.println(om.writeValueAsString(expenseList));
-			
-
-		} else {
-			List<Expense> expenseList = (List<Expense>) session.getAttribute("expenseList");
-			
-			log.info("Expense lsit retrieved from session: \n" + expenseList);
-			
-			PrintWriter pw = res.getWriter();
-			res.setContentType("application/json");
-			
-			pw.println(om.writeValueAsString(expenseList));
-			
 
 		}
 	}

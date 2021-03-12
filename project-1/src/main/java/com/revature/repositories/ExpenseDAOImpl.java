@@ -27,7 +27,7 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 		try {
 
 			Connection conn = ConnectionUtil.getConnection();
-			String sql = "INSERT INTO reimbursements (amount, description, author_id, status_id, type_id, reciept)"
+			String sql = "INSERT INTO reimbursements (amount, description, author_id, status_id, type_id, receipt)"
 						+ "VALUES (?, ?, ?, ?, ?, ?)";
 
 			stmt = conn.prepareStatement(sql);
@@ -36,9 +36,9 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 			stmt.setInt(3, e.getAuthor().getUserId());
 			stmt.setInt(4, e.getStatusId());
 			stmt.setInt(5, e.getTypeId());
-			stmt.setBinaryStream(6, e.getReceiptStream());
+			stmt.setBytes(6, e.getReceiptBytes());
 
-			if (!stmt.execute()) {
+			if (stmt.execute()) {
 				return false;
 			}
 
@@ -124,10 +124,10 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 					String status = rs.getString("status_name");
 					int typeId = rs.getInt("type_id");
 					String type = rs.getString("type_name");
-					InputStream receiptStream = rs.getBinaryStream("receipt");
-
+					byte[] receiptBytes = rs.getBytes("receipt");
 					
-					Expense e = new Expense(reimbId, amount, submitted, resolved, description, new User(authorId, authorFirstName, authorLastName, authorEmail), new User(resolverId, resolverFirstName, resolverLastName), status, statusId, type, typeId, receiptStream);
+					
+					Expense e = new Expense(reimbId, amount, submitted, resolved, description, new User(authorId, authorFirstName, authorLastName, authorEmail), new User(resolverId, resolverFirstName, resolverLastName), status, statusId, type, typeId, receiptBytes);
 					list.add(e);
 				}
 

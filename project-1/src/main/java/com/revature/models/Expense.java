@@ -2,9 +2,11 @@ package com.revature.models;
 
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Expense {
 	int reimbId;
 	double amount;
@@ -17,7 +19,7 @@ public class Expense {
 	int statusId;
 	String type;
 	int typeId;
-	InputStream receiptStream;
+	byte[] receiptBytes;
 	
 	public Expense() {
 		super();
@@ -52,11 +54,11 @@ public class Expense {
 		} else if (type.equals("Supplies")) {
 			this.typeId = 3;
 		}
-		this.receiptStream = null;
+		this.receiptBytes = null;
 	}
 	
 	public Expense(int reimbId, double amount, String description, User author, int statusId,
-			String type, InputStream receiptStream) {
+			String type, byte[] receiptBytes) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;	
@@ -71,11 +73,11 @@ public class Expense {
 		} else if (type.equals("Supplies")) {
 			this.typeId = 3;
 		}
-		this.receiptStream = receiptStream;
+		this.receiptBytes = receiptBytes;
 	}
 	
 	public Expense(double amount, String description, User author, int statusId,
-			String type, InputStream receiptStream) {
+			String type, byte[] receiptBytes) {
 		super();
 		
 		this.amount = amount;
@@ -90,11 +92,11 @@ public class Expense {
 		} else if (type.equals("Supplies")) {
 			this.typeId = 3;
 		}
-		this.receiptStream = receiptStream;
+		this.receiptBytes = receiptBytes;
 	}
 
 	public Expense(int reimbId, double amount, Timestamp submitted, Timestamp resolved, String description, User author,
-			User resolver, String status, int statusId, String type, int typeId, InputStream receiptStream) {
+			User resolver, String status, int statusId, String type, int typeId, byte[] receiptBytes) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
@@ -107,7 +109,7 @@ public class Expense {
 		this.statusId = statusId;
 		this.type = type;
 		this.typeId = typeId;
-		this.receiptStream = receiptStream;
+		this.receiptBytes = receiptBytes;
 	}
 
 	public int getReimbId() {
@@ -198,14 +200,12 @@ public class Expense {
 		this.typeId = typeId;
 	}
 
-		
-	
-	public InputStream getReceiptStream() {
-		return receiptStream;
+	public byte[] getReceiptBytes() {
+		return receiptBytes;
 	}
 
-	public void setReceiptStream(InputStream receiptStream) {
-		this.receiptStream = receiptStream;
+	public void setReceiptBytes(byte[] receiptBytes) {
+		this.receiptBytes = receiptBytes;
 	}
 
 	@Override
@@ -213,11 +213,7 @@ public class Expense {
 		return "Expense [reimbId=" + reimbId + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
 				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
 				+ ", status=" + status + ", statusId=" + statusId + ", type=" + type + ", typeId=" + typeId
-				+ ", receiptStream=" + receiptStream + "]";
+				+ ", receiptBytes=" + Arrays.toString(receiptBytes) + "]\n";
 	}
-
-
-	
-	
 	
 }
