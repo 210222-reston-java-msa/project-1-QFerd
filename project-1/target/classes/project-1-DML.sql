@@ -28,18 +28,23 @@ insert into reimbursements (amount, description, author_id, type_id)
 	values (100, 'Dinner', 4, 1);
 
 insert into reimbursements (amount, description, author_id, type_id)
-	values (50, 'Lunch', 4, 1);
+	values (300, 'Plane ticket', 6, 1);
+
+
 insert into users (username, pw, first_name, last_name, email, role_id)
-			values ('Daniel', 'dlpw', 'Daniel', 'Leason', 'dl@gmail.com', 2)
+			values ('Ellen', 'edpw', 'Ellen', 'Dean', 'ed@gmail.com', 2);
 update users 
 	set email = 'pcook755@yahoo.com'
 	where user_id = 4;
 	
 update reimbursements 
-	set resolved = null, resolver_id = null, status_id = 1
+	set description = 'Business lunch'
 	where reimb_id = 2;
+
 insert into reimbursements (amount, description, author_id, status_id, type_id)
 	values(200, 'Certification', 4, 1, 2);
+
+delete from reimbursements where reimb_id = 18;
 	
 	
 	
@@ -55,4 +60,5 @@ from reimbursements
 	left join users resolvers on reimbursements.resolver_id = resolvers.user_id 
 	left join reimb_type rt on reimbursements.type_id = rt.type_id 
 	left join reimb_status rs on reimbursements.status_id = rs.status_id
-	order by reimb_id asc;
+	order by submitted desc;
+	

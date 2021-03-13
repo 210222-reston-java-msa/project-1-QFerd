@@ -327,3 +327,100 @@ org.postgresql.util.PSQLException: ERROR: syntax error at or near "by"
 , Expense [reimbId=12, amount=1236.0, submitted=2021-03-12 00:30:25.653888, resolved=2021-03-12 00:38:27.473, description=kkk, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=0], resolver=User [userId=3, username=null, password=null, firstName=Kelly, lastName=Eaton, email=null, roleId=0], status=Approved, statusId=2, type=Travel, typeId=1]
 , Expense [reimbId=13, amount=9999.0, submitted=2021-03-12 00:39:20.839317, resolved=null, description=lee, author=User [userId=4, username=null, password=null, firstName=Paul, lastName=Cook, email=pc@gmail.com, roleId=0], resolver=User [userId=0, username=null, password=null, firstName=null, lastName=null, email=null, roleId=0], status=Pending, statusId=1, type=Training, typeId=2]
 ]
+2021-03-13 12:21:20 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:21:20 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:21:20 WARN  UserDAOImpl:44 - Unable to insert user
+org.postgresql.util.PSQLException: ERROR: syntax error at or near "$7"
+  Position: 122
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.UserDAOImpl.insert(UserDAOImpl.java:39)
+	at com.revature.services.UserService.insert(UserService.java:16)
+	at com.revature.util.PasswordUtil.main(PasswordUtil.java:79)
+2021-03-13 12:29:31 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:29:31 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:29:31 WARN  UserDAOImpl:44 - Unable to insert user
+org.postgresql.util.PSQLException: ERROR: syntax error at or near "$7"
+  Position: 122
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.UserDAOImpl.insert(UserDAOImpl.java:39)
+	at com.revature.services.UserService.insert(UserService.java:16)
+	at com.revature.util.PasswordUtil.main(PasswordUtil.java:81)
+2021-03-13 12:30:53 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:30:53 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:37:09 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:37:09 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:37:10 WARN  UserDAOImpl:89 - Unable to retrieve all users
+org.postgresql.util.PSQLException: The column name secure_ps was not found in this ResultSet.
+	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2607)
+	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2480)
+	at com.revature.repositories.UserDAOImpl.findAll(UserDAOImpl.java:81)
+	at com.revature.services.UserService.findByUsername(UserService.java:29)
+	at com.revature.util.PasswordUtil.main(PasswordUtil.java:88)
+2021-03-13 12:37:36 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:37:36 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:37:48 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:37:48 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:44:26 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:44:26 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:44:26 INFO  UserService:75 - Provided user password jdpw is correct.
+2021-03-13 12:44:39 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:44:39 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:44:39 WARN  UserService:78 - Provided password is incorrect
+2021-03-13 12:54:33 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:54:33 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:54:48 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 12:54:48 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 12:54:48 INFO  UserService:77 - Provided user password jdpw is correct.
+2021-03-13 13:00:08 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:00:08 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:00:08 INFO  UserService:77 - Provided user password kepw is correct.
+2021-03-13 13:19:55 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:19:55 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:19:56 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:19:56 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:19:56 WARN  UserDAOImpl:70 - Unable to update user
+org.postgresql.util.PSQLException: ERROR: column "reimb_id" does not exist
+  Position: 109
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.UserDAOImpl.update(UserDAOImpl.java:67)
+	at com.revature.services.UserService.update(UserService.java:26)
+	at com.revature.services.UserService.main(UserService.java:107)
+2021-03-13 13:20:22 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:20:22 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:20:23 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:20:23 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:20:23 INFO  UserDAOImpl:74 - User updated
+2021-03-13 13:23:03 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:23:03 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:23:04 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:23:04 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:23:04 INFO  UserDAOImpl:75 - User updated
+2021-03-13 13:23:37 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:23:37 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:23:37 INFO  UserService:77 - Provided user password dlpw is correct.
+2021-03-13 13:24:10 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:24:10 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:24:11 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:24:11 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:24:11 INFO  UserDAOImpl:75 - User updated
+2021-03-13 13:24:39 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 13:24:39 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 13:24:39 INFO  UserService:77 - Provided user password edpw is correct.

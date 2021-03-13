@@ -4,34 +4,59 @@ public class User {
 	
 	private int userId;
 	private String username;
-	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private int roleId;
+	private String securePassword;
+	private String salt;
 	
 	public User() {
 		
 	}
-
-	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			int roleId) {
+	
+	//All args
+	public User(int userId, String username, String firstName, String lastName, String email,
+			int roleId, String securePassword, String salt) {
 		super();
 		this.userId = userId;
 		this.username = username;
-		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.roleId = roleId;
+		this.securePassword = securePassword;
+		this.salt = salt;
 	}
-
 	
-	
-	public User(String username, String password, String firstName, String lastName, String email, int roleId) {
+	//No Id
+	public User(String username, String firstName, String lastName, String email,
+			int roleId, String securePassword, String salt) {
 		super();
 		this.username = username;
-		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.roleId = roleId;
+		this.securePassword = securePassword;
+		this.salt = salt;
+	}
+
+	public User(int userId, String username, String firstName, String lastName, String email,
+			int roleId) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.roleId = roleId;
+
+	}
+	
+	public User(String username, String firstName, String lastName, String email, int roleId) {
+		super();
+		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -73,14 +98,6 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -113,16 +130,33 @@ public class User {
 		this.roleId = roleId;
 	}
 
+	public String getSecurePassword() {
+		return securePassword;
+	}
+
+	public void setSecurePassword(String securePassword) {
+		this.securePassword = securePassword;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + userId;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + roleId;
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
+		result = prime * result + ((securePassword == null) ? 0 : securePassword.hashCode());
+		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -146,19 +180,24 @@ public class User {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (userId != other.userId)
-			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
 		if (roleId != other.roleId)
+			return false;
+		if (salt == null) {
+			if (other.salt != null)
+				return false;
+		} else if (!salt.equals(other.salt))
+			return false;
+		if (securePassword == null) {
+			if (other.securePassword != null)
+				return false;
+		} else if (!securePassword.equals(other.securePassword))
+			return false;
+		if (userId != other.userId)
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -170,9 +209,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", roleId=" + roleId + "]";
+		return "User [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", roleId=" + roleId + ", securePassword=" + securePassword
+				+ ", salt=" + salt + "]";
 	}
-	
-	
+
 }
