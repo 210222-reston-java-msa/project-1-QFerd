@@ -20,6 +20,7 @@
     
     <url-pattern>/expense-requests</url-pattern>
     <url-pattern>/manage-request</url-pattern>
+    <url-pattern>/employee-info</url-pattern>
 
     
   </servlet-mapping>

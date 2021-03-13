@@ -339,6 +339,30 @@ public class RequestHelper {
 		        System.out.println("Message sent successfully");
 		    }
 		    
-	
+	public static void updateEmployeeInfo(HttpServletRequest req, HttpServletResponse res) throws IOException, IOException {
+		
+		String newUsername = req.getParameter("username");
+		String newPassword = req.getParameter("password");
+		String newEmail = req.getParameter("email");
+		
+		log.info("New user info: " + newUsername + newPassword + newEmail);
+		
+		HttpSession session = req.getSession();
+		User currentUser = (User) session.getAttribute("currentUser");
+		currentUser.setUsername(newUsername);
+		currentUser.setEmail(newEmail);	
+        // Generate Salt. The generated value can be stored in DB. 
+        String salt = PasswordUtil.getSalt(30);
+        
+        // Protect user's password. The generated value can be stored in DB.
+        String newSecurePassword = PasswordUtil.generateSecurePassword(newPassword, salt);
+        currentUser.setSecurePassword(newSecurePassword);
+        
+        UserService.update(currentUser);
+		
+		
+		res.sendRedirect("http://localhost:8080/project-1/employeehome.html");
+		
+	}
 
 }

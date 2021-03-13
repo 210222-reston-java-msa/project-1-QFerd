@@ -48,6 +48,9 @@ public class FrontController extends HttpServlet {
 		case "manage-request":
 			RequestHelper.manageRequest(request, response);
 			break;
+		case "employee-info":
+			RequestHelper.updateEmployeeInfo(request, response);
+			break;
 		
 //		case "employees":
 //			RequestHelper.processEmployees(request, response);

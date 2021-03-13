@@ -134,3 +134,8 @@
 		window.location = "http://localhost:8080/project-1/";
 		
 	});
+
+	//===========================EMPLOYEE INFO
+	document.getElementById('employee-info-btn').addEventListener('click', function () {
+		window.location = "http://localhost:8080/project-1/employee-info.html";
+	});

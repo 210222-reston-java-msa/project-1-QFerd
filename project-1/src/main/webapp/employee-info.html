@@ -17,25 +17,25 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <p class="logout-btn">
-                <button class="btn success" id="logout-btn">Logout</button>
+                <button class="btn success" id="go-back-btn">Go back</button>
             </p>
-            <h1 class="display-4" id="welcome">Welcome</h1>
+            <h1 class="display-4" id="welcome">Personal Information</h1>
         </div>
     </div>
     <main>
-    <form id="emp-info">
+    <form id="emp-info" action="http://localhost:8080/project-1/employee-info" method="POST">
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="reimb-id">Username</label>
-                <input class="form-control" id="username">
+                <label for="username">Username</label>
+                <input required class="form-control" id="username" name="username">
             </div>
             <div class="form-group col-md-4">
                 <label for="password">Password</label>
-                <input class="form-control" id="password">
+                <input required type="password" class="form-control" id="password" name="password">
             </div>
             <div class="form-group col-md-4">
                 <label for="email">Email</label>
-                <input class="form-control" id="email">
+                <input required class="form-control" id="email" name="email">
             </div>
         </div>
 
