@@ -82,7 +82,7 @@ public class UserService {
         }
 	}
 	
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
 		//=============TEST FIND ALL
 //		System.out.println(UserService.findAll());
 		
@@ -90,7 +90,7 @@ public class UserService {
 //		System.out.println(confirmLogin("Ellen", "edpw"));
 		
 		//=============TEST UPDATE
-//        String myPassword = "edpw";
+//        String myPassword = "pcpw";
 //        
 //        // Generate Salt. The generated value can be stored in DB. 
 //        String salt = PasswordUtil.getSalt(30);
@@ -101,9 +101,9 @@ public class UserService {
 //        System.out.println("Password is: " + mySecurePassword);
 //        System.out.println("Salt: " + salt);
 //        
-//		User u = findByUsername("Ellen");
+//		User u = findByUsername("pcook");
 //		u.setSecurePassword(mySecurePassword);
 //		u.setSalt(salt);
 //		update(u);
-	}
+//	}
 }

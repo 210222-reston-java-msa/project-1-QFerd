@@ -75,7 +75,7 @@
 	
 					let amount = document.createElement('td')
 					expenseRow.append(amount)
-					amount.innerHTML = expenseList[i].amount
+					amount.innerHTML = Number(expenseList[i].amount).toFixed(2)
 					
 					let type = document.createElement('td')
 					expenseRow.append(type)

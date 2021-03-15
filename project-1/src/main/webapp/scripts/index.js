@@ -42,7 +42,7 @@ function sendLogin(event) {
             console.log("failed to find user");
 
             let childDiv = document.getElementById('warningText');
-            childDiv.textContent = "Failed to login!  Username of Password is incorrect"
+            childDiv.textContent = "Failed to login!  Username or Password is incorrect"
         }
     }    
     xhr.open("POST", "http://localhost:8080/project-1/login")

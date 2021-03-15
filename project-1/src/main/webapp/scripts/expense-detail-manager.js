@@ -36,7 +36,7 @@ submitted.innerHTML = new Intl.DateTimeFormat('default', {
 empName.innerHTML = expense.author.firstName + " " + expense.author.lastName
 empId.innerHTML = expense.author.userId
 expType.innerHTML = expense.type
-expAmt.innerHTML = "$" + expense.amount
+expAmt.innerHTML = "$" + Number(expense.amount).toFixed(2)
 desc.innerHTML = expense.description
 document.getElementById('status').innerHTML = expense.status
 

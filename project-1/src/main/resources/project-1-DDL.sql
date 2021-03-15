@@ -25,6 +25,10 @@ create table users (
 	role_id integer not null references user_roles(role_id)
 );
 
+alter table users add column secure_pw varchar;
+alter table users add column salt varchar;
+alter table users drop column pw;
+
 create table reimbursements (
 	reimb_id serial primary key,
 	amount numeric(20, 2) default 0 not null,

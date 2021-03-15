@@ -424,3 +424,17 @@ org.postgresql.util.PSQLException: ERROR: column "reimb_id" does not exist
 2021-03-13 13:24:39 INFO  ConnectionUtil:42 - Connection successful
 2021-03-13 13:24:39 INFO  ConnectionUtil:52 - Connected to db
 2021-03-13 13:24:39 INFO  UserService:77 - Provided user password edpw is correct.
+2021-03-13 17:00:48 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:00:48 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:05 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:08:05 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:06 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:08:06 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:06 INFO  UserDAOImpl:75 - User updated
+2021-03-13 17:08:23 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:08:23 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:37 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:08:37 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:38 INFO  ConnectionUtil:42 - Connection successful
+2021-03-13 17:08:38 INFO  ConnectionUtil:52 - Connected to db
+2021-03-13 17:08:38 INFO  UserDAOImpl:75 - User updated

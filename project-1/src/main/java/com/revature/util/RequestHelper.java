@@ -357,6 +357,7 @@ public class RequestHelper {
         // Protect user's password. The generated value can be stored in DB.
         String newSecurePassword = PasswordUtil.generateSecurePassword(newPassword, salt);
         currentUser.setSecurePassword(newSecurePassword);
+        currentUser.setSalt(salt);
         
         UserService.update(currentUser);
 		

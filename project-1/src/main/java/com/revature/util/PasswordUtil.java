@@ -61,8 +61,8 @@ public class PasswordUtil {
 		return returnValue;
 	}
 	
-    public static void main(String[] args)
-    {
+//    public static void main(String[] args)
+//    {
     	
     	//==========================TEST INSERT USER
 //        String myPassword = "jdpw";
@@ -83,9 +83,9 @@ public class PasswordUtil {
 //        UserService.insert(u);
         
         //===========================TEST VALIDATION
-//    	  String providedPassword = "jdpw";
+//    	  String providedPassword = "pcpw";
 //          
-//    	  User u = UserService.findByUsername("John");
+//    	  User u = UserService.findByUsername("pcook");
 //          // Encrypted and Base64 encoded password read from database
 //          String securePassword = u.getSecurePassword();
 //          
@@ -102,15 +102,15 @@ public class PasswordUtil {
 //          }
           
         //==========================GENERATE SECURE PASSWORDS FOR USERS
-        String myPassword = "pcpw";
-          
-        // Generate Salt. The generated value can be stored in DB. 
-        String salt = getSalt(30);
-        
-        // Protect user's password. The generated value can be stored in DB.
-        String mySecurePassword = generateSecurePassword(myPassword, salt);
-        
-        System.out.println("Password is: " + mySecurePassword);
-        System.out.println("Salt: " + salt);
-    }
+//        String myPassword = "dlpw";
+//          
+//        // Generate Salt. The generated value can be stored in DB. 
+//        String salt = getSalt(30);
+//        
+//        // Protect user's password. The generated value can be stored in DB.
+//        String mySecurePassword = generateSecurePassword(myPassword, salt);
+//        
+//        System.out.println("Password is: " + mySecurePassword);
+//        System.out.println("Salt: " + salt);
+//    }
 }

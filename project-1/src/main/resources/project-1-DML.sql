@@ -33,18 +33,25 @@ insert into reimbursements (amount, description, author_id, type_id)
 
 insert into users (username, pw, first_name, last_name, email, role_id)
 			values ('Ellen', 'edpw', 'Ellen', 'Dean', 'ed@gmail.com', 2);
+insert into users (username, pw, first_name, last_name, email, role_id, secure_pw, salt)
+	values ('John', 'jdpw', 'John', 'Doe', 'jd@gmail.com', 2, 'iv/DtFX3wIFpCN4bV58OOt6r9OkrlTTD1Ht6gvl47g8=', 'brZq35dHB3sp6TsDIYtUYikqhjCXHS');
+delete from users where user_id = 7;
 update users 
 	set email = 'pcook755@yahoo.com'
 	where user_id = 4;
+
+update users
+	set secure_pw = 'RCZGEHe7n0c7w9hPsN5htAuojufjA3Y5WNUFxX8OEWU=', salt = 'T5iJOzJapiFGQvbv8rYDvJ7v9PXNPh'
+	where user_id = 5;
 	
 update reimbursements 
-	set description = 'Business lunch'
+	set description = 'Lunch with client'
 	where reimb_id = 2;
 
 insert into reimbursements (amount, description, author_id, status_id, type_id)
 	values(200, 'Certification', 4, 1, 2);
 
-delete from reimbursements where reimb_id = 18;
+delete from reimbursements where reimb_id in(28);
 	
 	
 	
@@ -61,4 +68,8 @@ from reimbursements
 	left join reimb_type rt on reimbursements.type_id = rt.type_id 
 	left join reimb_status rs on reimbursements.status_id = rs.status_id
 	order by submitted desc;
+
+update users 
+	set username = 'Paul'
+	where user_id = 4;
 	
